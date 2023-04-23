@@ -1,0 +1,417 @@
+<!DOCTYPE html> 
+<html>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8;">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1;">
+<head>
+	<title>Worship Practice</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+   
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<style>
+         #contents{
+		   padding :2px;
+		   margin-bottom:100px;
+           font-family : '맑은고딕',sans-serif;
+		   font-size : 1.3em;
+		   background-color :#FACC2E;
+		 }
+         br{
+		   font-color :#FF0000; 
+		 }
+		 #ytplayer{
+		    pointer-events: none;
+		 }
+		 .text{
+		    color : #0000FF;
+		 }
+	</style>
+	<script>
+	 $(document).ready(function(){
+     
+          $("[id^=text]").hide();
+     });
+  
+    
+    </script>
+
+</head>
+
+<body>
+<div data-role="header" data-positon="fixed" data-theme="b">
+ <h1>Worship Practice</h1>
+ <a href="../panel/" data-rel="back" class="ui-btn ui-btn-left ui-alt-icon ui-nodisc-icon ui-corner-all ui-btn-icon-notext ui-icon-carat-l">Back</a>
+ <a class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear" href="#" id="favorite" title="즐겨찾기 등록">즐겨찾기</a>
+ </div>
+<div id="content">
+<div id="ytplayer" wmode=’opaque’><div style="position:absolute;top:10px;left:50px;font-color:white"> 
+
+</div></div>
+<div class="ui-grid-b">
+<div class="ui-block-a"><div class="button-wrap"><button class="ui-shadow ui-btn ui-corner-all" onclick="playYoutube();">play</button></div></div>
+<div class="ui-block-b"><div class="button-wrap"><button class="ui-shadow ui-btn ui-corner-all" onclick="pauseYoutube();">Pause</button></div></div>
+<div class="ui-block-c"><div class="button-wrap"><button class="ui-shadow ui-btn ui-corner-all" onclick="stopYoutube();">Stop</button></div></div>
+</div>
+<div class="ui-grid-a">
+<div class="ui-block-a"><div class="button-wrap"><input  type="text" id ="start" value=""/></div></div><div class="ui-block-b"><div class="button-wrap"><input  type="text" id ="end" value=""/><input type="hidden" id="video" value=""/></div></div>
+</div>
+<div class="ui-grid-b">
+<div class="ui-block-a"><div class="button-wrap"><button type="button" onclick="utubetime(1);">StartTimeRecord</button></div></div><div class="ui-block-b"><div class="button-wrap"><button type="button" onclick="utubetime(2);">EndTimeRecord</button></div></div>
+<div class="ui-block-c"><div class="button-wrap"><button type="button" onclick="utubetime(3);">repeat off</button></div></div>
+</div>
+
+<div id="contents">
+    <div id="text1"><li>Kung aking mamasdan ang kalawakan</li>
+	                <li class="text">쿵   아킹  마마스단 앙 카라와칸  </li>
+				    <li>If I look up the sky </li> </div> 
+    <div id="text2"><li>Hindi ko maunawaan</li>
+	                <li class="text">힌디 코 마우나와안</li>
+					<li>I can't understand</li></div>
+    <div id="text3"><li>Ang Iyong dahilan kung bakit ako'y</li>
+	                <li class="text">앙 이용 다힐란 쿵 바킷 아코'이</li>
+					<li>the reason why</li></div>
+    <div id="text4"><li>Pinili Mo't inaalagaan</li>
+	                <li class="text">피닐리 못 이나아라가안</li>
+					<li>You chose and took care of me</li></div>
+    <div id="text5"><li>Di ko kayang isipin</li>
+	                <li class="text">디 코 카양 이시핀</li>
+					<li>I can not imagine</li></div>
+    <div id="text6"><li>Hinding hindi ko kayang sukatin</li>
+	                <li class="text">힌딩 힌디 코 카양 수카틴</li>
+					<li>I can not measure it</li></div>
+    <div id="text7"><li>Ang pag-ibig mo Hesus</li>
+	                <li class="text">앙 박이빅 모 헤수스</li>
+					<li>love Jesus</li></div>
+    <div id="text8"><li>Na'yong binigay sakin</li>
+	                <li class="text">나'용 비니가이 사킨</li>
+					<li>You've been given me</li></div>
+    <div id="text9"><li>Salamat, salamat</li>
+	                <li class="text">살라맛 살라맛</li>
+					<li>Thank you thank you</li></div>
+    <div id="text10"><li>O Hesus sa pag-ibig Mo</li>
+	                 <li class="text">오 헤수스 사 박이빅 모</li>
+					 <li>O Jesus in Your love</li></div>
+    <div id="text11"><li>Walang ibang nagmahal sakin ng katulad Mo</li>
+	                 <li class="text">와랑 이방 낙마할 사킨 낭 카투랃 모</li>
+					 <li>No one else loves me like you</li></div>
+    <div id="text12"><li>Salamat, salamat</li>
+	                 <li class="text">살라맛, 살랑앗</li>
+					 <li>Thank you thank you</li></div>
+    <div id="text13"><li>O Hesus sa pag-ibig Mo</li>
+	                 <li class="text">오 헤수스 사 박이빅 모</li>
+					 <li>O Jesus in Your love</li></div>
+    <div id="text14"><li>Ako'y magsasaya sa piling Mo</li>
+	                 <li class="text">아코'이 막사사야 사 피링 모</li>
+					 <li>I will rejoice in Your presence</li></div>
+	<div id="text15"><li>Kung may pagsubok man o kagipitan</li>
+	                 <li class="text">쿵 마이 박수복만 오 카기피탄</li>
+	                 <li>Whether it is a trial or an emergency</li></div>
+    <div id="text16"><li>Ako ay may lalapitan</li>
+	                 <li class="text">아코 아이 마이 라라피탄</li>
+					 <li>I have a walk</li></div>
+	<div id="text17"><li>Ikaw Hesus ang aking sandigan</li>
+	                 <li class="text">이카우 헤수스 앙 아킹 산디간</li>
+					 <li>You are my Jesus</li></div>
+	<div id="text18"><li>Hindi Mo ko pababayaan</li>
+	                 <li class="text">힌디 모 코 파바바야안</li>
+					 <li>You will not neglect me</li></div>
+	<div id="text19"><li>Di ko kayang isipin</li>
+	                <li class="text">디 코 카양 이시핀</li>
+					<li>I can not imagine</li></div>
+    <div id="text20"><li>Hinding hindi ko kayang sukatin</li>
+	                <li class="text">힌딩 힌디 코 카양 수카틴</li>
+					<li>I can not measure it</li></div>
+    <div id="text21"><li>Ang pag-ibig mo Hesus</li>
+	                <li class="text">앙 박이빅 모 헤수스</li>
+					<li>love Jesus</li></div>
+    <div id="text22"><li>Na'yong binigay sakin</li>
+	                <li class="text">나'용 비니가이 사킨</li>
+					<li>You've been given me</li></div>
+    <div id="text23"><li>Salamat, salamat</li>
+	                <li class="text">살라맛 살라맛</li>
+					<li>Thank you thank you</li></div>
+    <div id="text24"><li>O Hesus sa pag-ibig Mo</li>
+	                 <li class="text">오 헤수스 사 박이빅 모</li>
+					 <li>O Jesus in Your love</li></div>
+    <div id="text25"><li>Walang ibang nagmahal sakin ng katulad Mo</li>
+	                 <li class="text">와랑 이방 낙마할 사킨 낭 카투랃 모</li>
+					 <li>No one else loves me like you</li></div>
+    <div id="text26"><li>Salamat, salamat</li>
+	                 <li class="text">살라맛, 살랑앗</li>
+					 <li>Thank you thank you</li></div>
+    <div id="text27"><li>O Hesus sa pag-ibig Mo</li>
+	                 <li class="text">오 헤수스 사 박이빅 모</li>
+					 <li>O Jesus in Your love</li></div>
+    <div id="text28"><li>Ako'y magsasaya sa piling Mo</li>
+	                 <li class="text">아코'이 막사사야 사 피링 모</li>
+					 <li>I will rejoice in Your presence</li></div>
+	<div id="text29"><li>Buhay ko ng purihin Ka</li>
+	                 <li class="text">부하이 코나 앙 푸리힌카</li>
+					 <li>I live to praise You</li></div>
+    <div id="text30"><li>Buhay ko ng Sayo‎'y sumamba</li>
+	                 <li class="text">부하이 코나 앙 사요'이 수맘바</li>
+					 <li>My life is a life of worship</li></div>
+	<div id="text31"><li>Wala ng ibang nanaisin pa</li>
+	                 <li class="text">와라 낭 이방 나나이신 파</li>
+					 <li>Nothing else to do</li></div>
+	<div id="text32"><li>Kundi pasalamatan Ka</li>
+	                 <li class="text">쿤디 파살랑아탄 카 </li>
+					 <li>But thank you</li></div>
+    <div id="text33"><li>Buhay ko ng purihin Ka</li>
+	                 <li class="text">부하이 코나 앙 푸리힌카</li>
+					 <li>I live to praise You</li></div>
+    <div id="text34"><li>Buhay ko ng Sayo‎'y sumamba</li>
+	                 <li class="text">부하이 코나 앙 사요'이 수맘바</li>
+					 <li>My life is a life of worship</li></div>
+	<div id="text35"><li>Wala ng ibang nanaisin pa</li>
+	                 <li class="text">와라 낭 이방 나나이신 파</li>
+					 <li>Nothing else to do</li></div>
+	<div id="text36"><li>Kundi pasalamatan Ka</li>
+	                 <li class="text">쿤디 파살랑아탄 카 </li>
+					 <li>But thank you</li></div>
+	<div id="text37"><li>Buhay ko ng purihin Ka</li>
+	                 <li class="text">부하이 코나 앙 푸리힌카</li>
+					 <li>I live to praise You</li></div>
+    <div id="text38"><li>Buhay ko ng Sayo‎'y sumamba</li>
+	                 <li class="text">부하이 코나 앙 사요'이 수맘바</li>
+					 <li>My life is a life of worship</li></div>
+	<div id="text39"><li>Wala ng ibang nanaisin pa</li>
+	                 <li class="text">와라 낭 이방 나나이신 파</li>
+					 <li>Nothing else to do</li></div>
+	<div id="text40"><li>Kundi pasalamatan Ka</li>
+	                 <li class="text">쿤디 파살랑아탄 카 </li>
+					 <li>But thank you</li></div>
+    <div id="text41"><li>Salamat, salamat</li>
+	                <li class="text">살라맛 살라맛</li>
+					<li>Thank you thank you</li></div>
+    <div id="text42"><li>O Hesus sa pag-ibig Mo</li>
+	                 <li class="text">오 헤수스 사 박이빅 모</li>
+					 <li>O Jesus in Your love</li></div>
+    <div id="text43"><li>Walang ibang nagmahal sakin ng katulad Mo</li>
+	                 <li class="text">와랑 이방 낙마할 사킨 낭 카투랃 모</li>
+					 <li>No one else loves me like you</li></div>
+    <div id="text44"><li>Salamat, salamat</li>
+	                 <li class="text">살라맛, 살랑앗</li>
+					 <li>Thank you thank you</li></div>
+    <div id="text45"><li>O Hesus sa pag-ibig Mo</li>
+	                 <li class="text">오 헤수스 사 박이빅 모</li>
+					 <li>O Jesus in Your love</li></div>
+    <div id="text46"><li>Ako'y magsasaya sa piling Mo</li>
+	                 <li class="text">아코'이 막사사야 사 피링 모</li>
+					 <li>I will rejoice in Your presence</li></div>
+    <div id="text47"><li>Salamat, salamat</li>
+	                <li class="text">살라맛 살라맛</li>
+					<li>Thank you thank you</li></div>
+    <div id="text48"><li>O Hesus sa pag-ibig Mo</li>
+	                 <li class="text">오 헤수스 사 박이빅 모</li>
+					 <li>O Jesus in Your love</li></div>
+    <div id="text49"><li>Walang ibang nagmahal sakin ng katulad Mo</li>
+	                 <li class="text">와랑 이방 낙마할 사킨 낭 카투랃 모</li>
+					 <li>No one else loves me like you</li></div>
+    <div id="text50"><li>Salamat, salamat</li>
+	                 <li class="text">살라맛, 살랑앗</li>
+					 <li>Thank you thank you</li></div>
+    <div id="text51"><li>O Hesus sa pag-ibig Mo</li>
+	                 <li class="text">오 헤수스 사 박이빅 모</li>
+					 <li>O Jesus in Your love</li></div>
+    <div id="text52"><li>Ako'y magsasaya sa piling Mo</li>
+	                 <li class="text">아코'이 막사사야 사 피링 모</li>
+					 <li>I will rejoice in Your presence</li></div>
+</div>
+<p><span id="current-time">0:00</span> / <span id="duration">0:00</span></p>
+</body>
+<?    
+  $youtubeCode = 'N6BjO1B0s9U';
+?>
+<script>
+// Load the IFrame Player API code asynchronously.
+var tag = document.createElement('script');
+var ScriptTime =[16,20,24,27,31,34,38,42,46,49,
+                 53,61,64,68,87,92,95,99,102,105,
+				 110,113,117,120,125,132,136,140,147,151,
+				 155,159,163,167,170,174,179,182,187,190,
+				 196,199,204,211,214,218,225,229,233,241,
+				 244,248,252,256,257];
+tag.src = "https://www.youtube.com/player_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var videoId = '<?php echo $youtubeCode; ?>';
+document.getElementById('video').value = videoId;
+//var startSeconds ='<?= $str ?>';
+//var endSeconds = 30;
+
+// Replace the 'ytplayer' element with an <iframe> and
+// YouTube player after the API code downloads.
+var player,time_update_interval = 0;
+
+var playerConfig = {
+  height: '200',
+  width: '100%',
+  videoId: videoId,
+  playerVars: {
+    playsinline: 1,
+    autoplay: 1, // Auto-play the video on load
+    controls: 2, // Show pause/play buttons in player
+    showinfo: 0, // Hide the video title
+    modestbranding: 1, // Hide the Youtube Logo
+    fs: 1, // Hide the full screen button
+    cc_load_policy: 0, // Hide closed captions
+    iv_load_policy: 3, // Hide the Video Annotations
+    //start: startSeconds,
+    //end: endSeconds,
+    autohide: 1, // Hide video controls when playing
+  },
+  events: {
+    'onStateChange': onStateChange,
+	'onReady': initialize
+  }
+};
+
+function onYouTubePlayerAPIReady() {
+  player = new YT.Player('ytplayer', playerConfig);
+}
+
+function onStateChange(state) {
+  if (state.data === YT.PlayerState.ENDED) {
+    player.loadVideoById({
+      videoId: videoId,
+      //startSeconds: startSeconds,
+      //endSeconds: endSeconds
+    });
+  }
+}
+
+function initialize(){
+
+    // Update the controls on load
+    updateTimerDisplay();
+   
+
+    // Clear any old interval.
+    clearInterval(time_update_interval);
+
+    // Start interval to update elapsed time display and
+    // the elapsed part of the progress bar every second.
+    time_update_interval = setInterval(function () {
+        updateTimerDisplay();
+         }, 1000);
+
+
+   // $('#volume-input').val(Math.round(player.getVolume()));
+}
+function updateTimerDisplay(){
+    // Update current time text display.
+    $('#current-time').text(formatTime( player.getCurrentTime() ));
+    $('#duration').text(formatTime( player.getDuration() ));
+	updateScript(player.getCurrentTime());
+}
+function updateScript(a){
+    for (var i=0;i<ScriptTime.length+1 ;i++ )
+    {
+       if (a < ScriptTime[i])
+       {      
+		   $("[id^=text]").hide();
+		   
+		   $('#text'+i).show();
+		   break;
+	   }
+	
+	}
+	
+     
+}
+function formatTime(time){
+    time = Math.round(time);
+
+    var minutes = Math.floor(time / 60),
+    seconds = time - minutes * 60;
+
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    return minutes + ":" + seconds;
+}
+function playYoutube(){
+   player.playVideo();
+}
+function pauseYoutube(){
+   player.pauseVideo();
+}
+function stopYoutube(){
+   clearTimeout(OnTimer);
+   player.stopVideo();
+}
+function utubetime(point){
+  var currentTIme = player.getCurrentTime();
+  if (point===1)
+  {
+     document.getElementById('start').value = currentTIme;
+  }
+  if (point===2)
+  {
+     document.getElementById('end').value = currentTIme;
+     sectionRepeat();
+  }
+  if (point===3)
+  {
+     document.getElementById('start').value=''
+     document.getElementById('end').value=''
+
+  }
+  
+  
+}
+function BackSeconds(seconds) {
+  var current = player.getCurrentTime();
+  var new_position = current - seconds;
+
+  if (new_position < 0) {
+    new_position = 0;
+  }
+  player.seekTo(new_position);
+}
+function sectionRepeat(){
+ 
+  OnTimer(); 
+}
+function check_repeat() {
+  var start = document.getElementById('start').value;
+  var current = player.getCurrentTime();
+  var range = document.getElementById('end').value;
+
+  // repeat bar 오른쪽을 지나갔으면, 왼쪽 bar 로 보낸다
+
+  if (current >= range) {
+    player.seekTo(start);
+  }
+  
+}
+
+function OnTimer() {
+
+  var myTimer = setTimeout(OnTimer, 500);
+
+  if (!player) {
+	return;
+  }
+  if (!player.getCurrentTime) {
+	return;
+  }
+  var current = player.getCurrentTime();
+  var start = document.getElementById('start').value;
+  var end = document.getElementById('end').value;
+  if(!end && !start) {
+     //player.seekTo(current);
+	 clearTimeout(myTimer);
+     exit;
+  }
+
+  check_repeat();
+ 
+}
+
+//timer 해결할것
+</script>
+

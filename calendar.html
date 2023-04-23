@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>jQuery UI 달력</title>
+
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+
+<link rel="stylesheet" href="./jquery-ui-1.12.1/jquery-ui.min.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="./jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+<script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$("#date1").datepicker();
+	
+	$("#date2").datepicker({
+		showOn: "button",
+        buttonImage: "images/calendar.gif",
+	    buttonImageOnly: false,
+		buttonText: "Select date"
+	});
+	
+	$("#date3").datepicker({
+		onSelect:function(dateText, inst) {
+			console.log(dateText);
+			console.log(inst);
+		}
+	});
+});
+//]]>
+</script>
+</head>
+<body>
+<h3>jQuer UI  달력</h3>
+<input type="text" name="date" id="date1" size="12" />
+<br/>
+<input type="text" name="date" id="date2" size="12" />
+<br/>
+<input type="text" name="date" id="date3" size="12" />
+<input type="button" value="달력" onclick="$('#date3').datepicker('show');" />
+</body>
+</html>
+
+<?php
+
+    include('dbcon.php'); 
+    include('check.php');
+	
+	
+   
+    if (is_login()){
+
+        if ($_SESSION['activate']==1) 
+            ;
+        else
+            header("Location: welcome.php");
+    }else
+        header("Location: iteminfo.php"); 
+
+ 
+    include('headipgo.php');
+
+	
+	$stype = isset($_POST['stype']) ? $_POST['stype'] : '';
+	$searchtext = isset($_POST['itext']) ? $_POST['itext'] : '';
+	$nowdate =date("Y-m-d");
+  
+?>
+
+<head>
+<link rel="stylesheet" href="./jquery-ui-1.12.1/jquery-ui.min.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="./jquery-ui-1.12.1/jquery-ui.min.js"></script>
+
+<script src="./jquery-ui-1.12.1/datepicker-ko.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+$(function(){
+	$("#date1").datepicker();
+	
+	$("#date2").datepicker({
+		showOn: "button",
+        buttonImage: "images/calendar.gif",
+	    buttonImageOnly: false,
+		buttonText: "Select date"
+	});
+	
+	$("#date3").datepicker({
+		onSelect:function(dateText, inst) {
+			console.log(dateText);
+			console.log(inst);
+		}
+	});
+});
+//]]>
+</script>
+</head>
+
+    <div class="container">
+	<div class="page-header">
+    	<h1 class="h2">&nbsp;입고입력</h1><hr>
+    </div>
+    <div id="navhead">
+    <form class="navbar" role="search" method="post" action="">
+       
+       <div class="col-sm-3">
+<input type="text" name="date" id="date1" size="12" />
+<br/>
+<input type="text" name="date" id="date2" size="12" />
+<br/>
+<input type="text" name="date" id="date3" size="12" />
+<input type="button" value="달력" onclick="$('#date3').datepicker('show');" />
+
+
+
+	   <input type="text" id="datePicker" name='search' class="form-control" value='<? isset($value) ? $value : $nowdate;?>'></div>
+       <div class="col-sm-2">	        
+			<select name="stype" class="form-control">
+			  <option value='0' <? if($stype =='0') echo "selected"; ?>>전체</option>
+			  <option value='1' <? if($stype =='1') echo "selected"; ?>>품목코드</option>
+			  <option value='2' <? if($stype =='2') echo "selected"; ?>>품목명</option>
+			  <option value='3' <? if($stype =='3') echo "selected"; ?>>업체명</option>
+			  <option value='4' <? if($stype =='4') echo "selected"; ?>>재고조사담당</option>
+			</select>
+		   
+	   </div>
+	   <div class="col-sm-4"><input type="text" name="itext" class="form-control" placeholder="Search" value="<? if($searchtext) echo $searchtext  ?>"></div>
+	   <div class="col-sm-3"><button type="submit" class="btn btn-default">검색</button>&nbsp;<button type="button" class="btn btn-default" onclick="">엑셀저장</button>
+	   </div>
+     </form>           
+   </div>
+   <button onclick="add_row()">행 추가하기</button>
+       <button onclick="delete_row()">행 삭제하기</button>
+   <div class="row">
+   
+
+	
+    <table id="table" class="table table-bordered table-hover table-striped" style="border: 1px solid; border-collapse: collapse;">
+        <thead>  
+        <tr style="border: solid 1px;">  
+            <th style="border: solid 1px;"><input type='checkbox'></th> 
+			<th style="border: solid 1px ; padding:0px;" NOWRAP>품목코드</th>  
+            <th style="border: solid 1px ; padding:0px;" NOWRAP>품목명</th>
+            <th style="border: solid 1px ; padding:0px;" NOWRAP>규격</th>
+            <th style="border: solid 1px ; padding:0px;" NOWRAP>BOX</th>
+            <th style="border: solid 1px ; padding:0px;" NOWRAP>수량</th>
+			<th style="border: solid 1px ; padding:0px;" NOWRAP>단가</th>
+        
+			<th style="border: solid 1px ; padding:0px;" NOWRAP>공급가액</th>
+			<th style="border: solid 1px ; padding:0px;" NOWRAP>부가세</th>
+			<th style="border: solid 1px ; padding:0px;" NOWRAP>유통기한</th>
+			<th style="border: solid 1px ; padding:0px;" NOWRAP>합계</th>
+			<th style="border: solid 1px ; padding:0px;" NOWRAP>비고</th>
+			
+        </tr>
+		</thead>  
+		<tbody id="my-tbody">
+		<tr style="border: solid 1px;">
+		    <td style="border: 1px solid;"><input type='checkbox'></td> 
+			<td style="border: 1px solid; padding:0px;"><input type='text' size="35" style="width:100%; height :33px;border:0;"></td>  
+            <td style="border: 1px solid; padding:0px;"><input type='text' size="120" style="width:100%;height :33px;border:0;"></td>
+            <td style="border: 1px solid; padding:0px;"><input type='text' size="20" style="width:100%; height :33px;border:0;"></td>
+            <td style="border: 1px solid; padding:0px;"><input type='text' size="20" style="width:100%; height :33px;border:0;"></td>
+            <td style="border: 1px solid; padding:0px;"><input type='text' size="20" style="width:100%; height :33px;border:0;"></td>
+			<td style="border: 1px solid; padding:0px;"><input type='text' size="20" style="width:100%; height :33px;border:0;"></td>
+        
+			<td style="border: 1px solid; padding:0px;"><input type='text' size="20" style="width:100%; height :33px;border:0;"></td>
+			<td style="border: 1px solid; padding:0px;"><input type='text' size="20" style="width:100%; height :33px;border:0;"></td>
+			<td style="border: 1px solid; padding:0px;"><input type='text' size="20" style="width:100%; height :33px;border:0;"></td>
+			<td style="border: 1px solid; padding:0px;"><input type='text' size="20" style="width:100%; height :33px;border:0;"></td>
+			<td style="border: 1px solid; padding:0px;"><input type='text' size="20" style="width:100%; height :33px;border:0;"></td>	
+		</tr>
+		</tbody>
+     </table>
+    </div>
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
+<script>
+
+  function add_row() {
+    var my_tbody = document.getElementById('my-tbody');
+    //var row = my_tbody.insertRow(0); // 상단에 추가
+    var row = my_tbody.insertRow( my_tbody.rows.length ); // 하단에 추가
+	
+	var i = my_tbody.rows.length;
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+	var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+	var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+	var cell7 = row.insertCell(6);
+    var cell8 = row.insertCell(7);
+	var cell9 = row.insertCell(8);
+    var cell10 = row.insertCell(9);
+	var cell11 = row.insertCell(10);
+    var cell12 = row.insertCell(11);
+
+	cell1.style.border = '1px solid';
+    cell1.innerHTML = "<tr><td><input type='checkbox'/>";
+    cell2.style.border = '1px solid';
+    cell2.style.padding = '0px';
+	cell2.innerHTML = "<input type='text' id='row_code"+i+"' name='row-code"+i+"' size='35' style='width:100%; height :33px;border:0;'>";
+	cell3.style.border = '1px solid';
+    cell3.style.padding = '0px';
+	cell3.innerHTML = "<input type='text' id='row_code' name='row-code' size='120' style='width:100%; height :33px;border:0;'>";
+	cell4.style.border = '1px solid';
+    cell4.style.padding = '0px';
+
+	cell4.innerHTML = "<input type='text' id='row_code' name='row-code' size='20' style='width:100%; height :33px;border:0;'>";
+	cell5.style.border = '1px solid';
+    cell5.style.padding = '0px';
+
+	cell5.innerHTML = "<input type='text' id='row_code' name='row-code' size='20' style='width:100%; height :33px;border:0;'>";
+	cell6.style.border = '1px solid';
+    cell6.style.padding = '0px';
+
+	cell6.innerHTML = "<input type='text' id='row_code' name='row-code' size='20' style='width:100%; height :33px;border:0;'>";
+	cell7.style.border = '1px solid';
+    cell7.style.padding = '0px';
+
+	cell7.innerHTML = "<input type='text' id='row_code' name='row-code' size='20' style='width:100%; height :33px;border:0;'>";
+	cell8.style.border = '1px solid';
+    cell8.style.padding = '0px';
+
+	cell8.innerHTML = "<input type='text' id='row_code' name='row-code' size='20' style='width:100%; height :33px;border:0;'>";
+	cell9.style.border = '1px solid';
+    cell9.style.padding = '0px';
+
+	cell9.innerHTML = "<input type='text' id='row_code' name='row-code' size='20' style='width:100%; height :33px;border:0;'>";
+	cell10.style.border = '1px solid';
+    cell10.style.padding = '0px';
+
+	cell10.innerHTML = "<input type='text' id='row_code' name='row-code' size='20' style='width:100%; height :33px;border:0;'>";
+	cell11.style.border = '1px solid';
+    cell11.style.padding = '0px';
+
+	cell11.innerHTML = "<input type='text' id='row_code' name='row-code' size='20' style='width:100%; height :33px;border:0;'>";
+	cell12.style.border = '1px solid';
+    cell12.style.padding = '0px';
+
+	cell12.innerHTML = "<input type='text' id='row_code' name='row-code' size='20' style='width:100%; height :33px;border:0;'>";
+  }
+
+  function delete_row() {
+    var my_tbody = document.getElementById('my-tbody');
+    if (my_tbody.rows.length < 2) return;
+    // my_tbody.deleteRow(0); // 상단부터 삭제
+    my_tbody.deleteRow( my_tbody.rows.length-1 ); // 하단부터 삭제
+  }
+</script>

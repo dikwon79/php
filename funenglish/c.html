@@ -1,0 +1,39 @@
+<!DOCTYPE html> 
+<html>
+<meta http-equiv="Content-Type" content="text/html;charset=euc-kr;">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1;">
+<head>
+	<title>팜넷 재고관리</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+   
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" id="www-widgetapi-script" src="https://s.ytimg.com/yts/jsbin/www-widgetapi-vflfUQ-oz/www-widgetapi.js"></script>
+    <script type="text/javascript" src="uTubePlayer.js"></script>
+   
+</head>
+
+<body>
+<div data-role="header" data-positon="fixed" data-theme="b">
+ <h1>뉴스로 한글 배우기</h1>
+ <a class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear" href="#" id="favorite" title="즐겨찾기 등록">즐겨찾기</a>
+
+ </div>
+<div id="content">
+<video id="adVideo" webkit-playsinline></div>
+<div><button type="button" onclick="playYoutube();">Play</button></div>
+<div><button type="button" onclick="playtime();">Play</button></div>
+
+<script type="text/javascript">
+    var findwidth = screen.width;
+	var findheight = screen.width/3;
+    
+    uTubePlayer.settingVideo('adVideo', 'rht_uiteReE', findheight,findwidth);
+	
+	// uTubePlayer.settingVideo('adVideo2', 'rht_uiteReE', 300, 400);
+
+</script>
+
+
+</body>

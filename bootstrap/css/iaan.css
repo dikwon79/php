@@ -1,0 +1,60 @@
+#navhead{
+  
+    background-color : #FFEBF0;
+ 
+   
+
+    height:100px;
+    line-height:30px;
+    padding:30px 0;
+    margin : 10px -15px;
+}
+#option{
+  
+    background-color : #FBF7C3;
+    height:30px;
+    line-height:30px;
+    padding:5px 0;
+    margin : 5px -15px;
+}
+
+#navitem{
+  
+    background-color : #FAFA96;
+    height:100px;
+    line-height:30px;
+    padding:30px 0;
+    margin : 10px -15px;
+}
+
+.modal-dialog.modal-80size {
+  width: 80%;
+  height: 80%;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-content.modal-80size {
+  height: auto;
+  min-height: 80%;
+}
+
+.modal.modal-center {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .modal.modal-center:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog.modal-center {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
